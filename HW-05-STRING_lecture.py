@@ -1,6 +1,8 @@
 '''ТЕМА 5. Просунута робота з рядками. '''
 
-# numbers = ['123', '456', '321', '10', '75', 'abc', '23c']
+numbers = ['123', '456', '321', '10', '75', 'abc', '23c']
+# функція форму новий список, куди додає лише елементи з цифрами.
+# Елементи з буквами ігноруємо.
 
 # def delete_str(data):
 #     result = list()
@@ -8,57 +10,62 @@
 #         if element.isdigit():
 #             result.append(element)
 #     return result
+# #Виводим відсортований перелік ['10', '123', '321', '456', '75'] 
+
 
 # def transform_number(data):
 #     result = list()
 #     for i in data:
-#         result.append(int[i])
+#         result.append(int(i))
 #     return result
 
 
-
-
 # only_numbers = delete_str(numbers)
+# digits = transform_number(only_numbers)
 # print(only_numbers)
+
 # #print(delete_str(numbers))
-# print(f'Diffeence {max(only_numbers) - min(only_numbers)}')
+# print(f'Diffeence {max(digits) - min(digits)}') #різниця між макс та мін
+# print(f'Average {sum(digits) / len(digits)}') #Середнє значення
 
 
-# articles_dict = [
-#     {
-#         "playset": "Semi final voleyball strike",
-#         "command": "Super Star",
-#         "year": 1989,
-#     },
-#     {
-#         "playset": "Quater final Finansial competition",
-#         "command": "Actual price",
-#         "year": 2020,
-#     },
-#     {
-#         "playset": "Glory speed test call centre of East Erope",
-#         "command": "Modern Operators",
-#         "year": 1921,
-#     },
-#     {
-#         "playset": "Endless war From Age of Dragons",
-#         "command": "Kings of Glory",
-#         "year": 2012,
-#     },
-# ]
+articles_dict = [
+    {
+        "playset": "Semi final voleyball strike",
+        "command": "Super Star",
+        "year": 1989,
+    },
+    {
+        "playset": "Quater final Finansial competition",
+        "command": "Actual price",
+        "year": 2020,
+    },
+    {
+        "playset": "Glory speed test call centre of East Erope",
+        "command": "Modern Operators",
+        "year": 1921,
+    },
+    {
+        "playset": "Endless war From Age of Dragons",
+        "command": "Kings of Glory",
+        "year": 2012,
+    },
+]
 
-# def find_states(key_word, letter_case=False):
-#     actual_states = list()
-#     if letter_case:
-#         for i in range(len(articles_dict)):
-#             if articles_dict[i]['playset'].find(key_word) != -1 or articles_dict[i]['command'].find(key_word) != -1:
-#                 actual_states.append(articles_dict[i])
+def find_states(key_word, letter_case=False):
+    actual_states = list()
+    if letter_case:
+        for i in range(len(articles_dict)):
+            if articles_dict[i]['playset'].find(key_word) != -1 or articles_dict[i]['command'].find(key_word) != -1:
+                actual_states.append(articles_dict[i])
 
-#     else
-#         for i in range(len(articles_dict)):
-#             if articles_dict[i]['playset'].find(key_word) != -1 or articles_dict[i]['command'].find(key_word) != -1:
-#                 actual_states.append(articles_dict[i])        
+    else:
+        for i in range(len(articles_dict)):
+            if (articles_dict[i]['playset'].lower(key_word)).find(key_word) != -1 \
+                or (articles_dict[i]['command'].lower()).find(key_word) != -1:
+                actual_states.append(articles_dict[i])        
 
+print(find_states('Fin', True))
 
 
 
@@ -175,25 +182,25 @@
 
 '''Підрахунок слів у параграфі'''
 
-import re
-from collections import defaultdict
+# import re
+# from collections import defaultdict
 
-paragraph = """
-This is a sample paragraph. It contains some words, like sample, paragraph, and words.
-Let's count the frequency of each word in this paragraph!
-"""
+# paragraph = """
+# This is a sample paragraph. It contains some words, like sample, paragraph, and words.
+# Let's count the frequency of each word in this paragraph!
+# """
 
-def word_frequency_counter(paragraph):
-    words = re.findall(r'\b\w+\b', paragraph.lower())
+# def word_frequency_counter(paragraph):
+#     words = re.findall(r'\b\w+\b', paragraph.lower())
 
-    word_frequency = defaultdict(int)
+#     word_frequency = defaultdict(int)
 
-    for word in words:
-        word_frequency[word] += 1
+#     for word in words:
+#         word_frequency[word] += 1
 
-    return dict(word_frequency)
+#     return dict(word_frequency)
 
-print(word_frequency_counter(paragraph))
+# print(word_frequency_counter(paragraph))
 
 
 
