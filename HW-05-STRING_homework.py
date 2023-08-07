@@ -333,24 +333,24 @@
 
 ''' Задача 6. Перевірка спаму (заборонене слово) '''
 
-def is_spam_words(text, spam_words, space_around=False):
-    text = text.lower()
-    print(text)
-    for word in spam_words:
-        word = word.lower()
-        print(word)
-        if space_around:
-            if f" {word} " in text or text.startswith(word + " ") or text.endswith(" " + word) or text.endswith('.' + word) or text == word:
-                return True
-        if word in text:
-            print(word)
-            return True
+# def is_spam_words(text, spam_words, space_around=False):
+#     text = text.lower()
+#     print(text)
+#     for word in spam_words:
+#         word = word.lower()
+#         print(word)
+#         if space_around:
+#             if f" {word} " in text or text.startswith(word + " ") or text.endswith(" " + word) or text.endswith('.' + word) or text == word:
+#                 return True
+#         if word in text:
+#             print(word)
+#             return True
 
-    return False
+#     return False
 
-text = 'Ти ок, але виглядаєш як лох'
-spam_words = 'лох'
-print(is_spam_words(text, spam_words, True))
+# text = 'Ти ок, але виглядаєш як лох'
+# spam_words = 'лох'
+# print(is_spam_words(text, spam_words, True))
 
 
 #У цьому прикладі, функція is_spam_words приймає рядок text, список заборонених слів spam_words, та параметр space_around, який за замовчуванням дорівнює False.
@@ -392,8 +392,87 @@ print(is_spam_words(text, spam_words, True))
 # print(result4)  # Виведе: True
 
 
-''' Задача 7. Перевірка спаму (заборонене слово) '''
+''' Задача 7. Транслітерація українська - англійська '''
+
+# CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ"
+# TRANSLATION = ("a", "b", "v", "g", "d", "e", "e", "j", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
+#                "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya", "je", "i", "ji", "g")
+
+# TRANS = {}
+# for key, value in zip(CYRILLIC_SYMBOLS, TRANSLATION):
+#     TRANS[ord(key)] = value
+#     TRANS[ord(key.upper())] = value.upper()
+         
+# def translate(name):
+#     latin_name = ''
+#     for letter in name:
+#         if letter == ' ':
+#             latin_name += ' '
+#         else:
+#             latin_name += str(TRANS.get(ord(letter)))
+#     return latin_name    
+
+# print(translate("Геннадій Поберезніченко"))
+
+''' Задача 8. Оцінки студентів '''
+
+#grades = {"A": 5, "B": 5, "C": 4, "D": 3, "E": 3, "FX": 2, "F": 1}
+
+# def formatted_grades(students):
+#     i = 1
+#     for name, grade in students.items():
+#         print('{:^4}| {:^10}| {:^5}| {:^5}'.format(i, name, grade, grades.get(grade)))
+        
+#         i += 1
+
+# result = formatted_grades(students = {"Nick": "A", "Olga": "B", "Mike": "FX", "Anna": "C"})
+# print(result)
+
+# def formatted_grades(students):
+#     formatted_list = []
+#     i = 1
+#     for name, grade in students.items():
+#         formatted_list.append('{:>4}|{:<10}|{:^5}|{:^5}'.format(i, name, grade, grades.get(grade)))
+#         i += 1
+#     return formatted_list
+
+# result = formatted_grades(students = {"Nick": "A", "Olga": "B", "Mike": "FX", "Anna": "C"})
+# print(result)
+
+''' Задача 9. Виведення чисел в різних форматах '''
+
+# def formatted_numbers():
+#     formatted_list = []
+#     formatted_list.append('|{:^10}|{:^10}|{:^10}|'.format('decimal', 'hex', 'binary'))
+#     for i in range(16):
+#         formatted_list.append('|{:<10}|{:^10}|{:>10}|'.format( i, hex(i)[2:], bin(i)[2:]))
+       
+#     return formatted_list
+
+# for el in formatted_numbers():
+#      print(el)
+
+''' Задача 10. Пошук слова та формування словника '''
+
+import re
+
+text = "Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language, and first released it in 1991 as Python 0.9.0."
+word = r'Python'
+
+def find_word(text, word):
+    result_set = {}
+    result = re.search(word, text)
+    
+    res_find = False
+    if result.group() == str(word):
+        res_find = True
+        result_set = {'result': res_find, 'first-index': result.span()[0], 'last_index': result.span()[1], 'search_string': result.group(), 'string': result.string}
+    else:
+        result_set = {'result': False, 'first-index': None, 'last_index': None, 'search_string': 'python', 'string': result.string}
+        
+    return (result_set)    
 
 
-''' Задача 8. Перевірка спаму (заборонене слово) '''
-
+print(find_word("Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language,and first released it in 1991 as Python 0.9.0.",
+    "Python"))
+    
