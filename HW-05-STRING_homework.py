@@ -501,6 +501,28 @@
 #         }  
 #     return result 
 
+''' Задача 10. Пошук слова та формування словника (версія ментора 2) '''
+
+# import re
+
+# def find_word(text, word):
+#     math = re.search(word, text)  
+#     result = None  
+#     result = {  
+#             "result": True if math else False,  
+#             "first_index": math.span()[0] if math else None,  
+#             "last_index": math.span()[1] if math else None,  
+#             "search_string": math.group() if math else word,  
+#             "string": math.string if math else text,  
+#         }  
+        
+#     return result  
+
+# print(find_word("Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language,and first released it in 1991 as Python 0.9.0.",
+# "Python"))
+
+
+
 ''' Задача 11. Пошук слова 'python' '''
 
 # import re
@@ -556,23 +578,27 @@
 ''' Задача 14. Пошук номера телефону '''
 
 # import re
-
-# def find_phone_numbers(text):
-#     pattern = re.compile(r'\+\d{3}\s?\(\d{2}\)\s?\d{3}-\d{1,2}-\d{2,3}')
-#     phone_numbers = pattern.findall(text)
-#     return phone_numbers
-
-# text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
-# phone_numbers = find_phone_numbers(text)
-# print(phone_numbers)
-
-import re
-def find_all_phones(text):
-    result = re.findall(r'\+\d{3}\s?\(\d{2}\)\s?\d{3}-\d{1,2}-\d{2,3}', text)
-    result = [number[:-1] if len(number) > 17 else number for number in result]
-    return result
+# def find_all_phones(text):
+#     result = re.findall(r'\+\d{3}\s?\(\d{2}\)\s?\d{3}-\d{1,2}-\d{2,3}', text)
+#     result = [number[:-1] if len(number) > 17 else number for number in result]
+#     return result
     
 
-text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
-result = find_all_phones(text)
-print(result)
+# text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
+# result = find_all_phones(text)
+# print(result)
+
+''' Задача 15. Пошук лінків на сайтиномера телефону '''
+
+# import re
+
+# def find_all_links(text):
+#     result = []
+#     iterator = re.finditer(r"https?:\/\/((\w+)\.)+\w+", text)
+#     for match in iterator:
+#         result.append(match.group())
+#     return result
+
+# text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
+# result = find_all_phones(text)
+# print(result)
