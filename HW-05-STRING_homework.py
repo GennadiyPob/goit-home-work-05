@@ -454,25 +454,125 @@
 
 ''' Задача 10. Пошук слова та формування словника '''
 
-import re
+# import re
 
-text = "Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language, and first released it in 1991 as Python 0.9.0."
-word = r'Python'
+# text = "Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language, and first released it in 1991 as Python 0.9.0."
+# word = r'Python'
 
-def find_word(text, word):
-    result_set = {}
-    result = re.search(word, text)
-    
-    res_find = False
-    if result.group() == str(word):
-        res_find = True
-        result_set = {'result': res_find, 'first-index': result.span()[0], 'last_index': result.span()[1], 'search_string': result.group(), 'string': result.string}
-    else:
-        result_set = {'result': False, 'first-index': None, 'last_index': None, 'search_string': 'python', 'string': result.string}
+# def find_word(text, word):
+#     result_set = {}
+#     result = re.search(word, text)
+#     res_find = False
+#     if result.group() == str(word):
+#         res_find = True
+#         result_set = {'result': res_find, 'first-index': result.span()[0], 'last_index': result.span()[1], 'search_string': result.group(), 'string': result.string}
+#     else:
+#         result_set = {'result': False, 'first-index': None, 'last_index': None, 'search_string': 'python', 'string': result.string}
         
-    return (result_set)    
+#     return (result_set)    
 
 
-print(find_word("Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language,and first released it in 1991 as Python 0.9.0.",
-    "Python"))
+# print(find_word("Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming language,and first released it in 1991 as Python 0.9.0.",
+#     "Python"))
+
+''' Задача 10. Пошук слова та формування словника (версія ментора) '''
+
+# import re
+
+
+# def find_word(text, word):
+#     math = re.search(word, text)  
+#     result = None  
+#     if math:  
+#         result = {  
+#             "result": True,  
+#             "first_index": math.span()[0],  
+#             "last_index": math.span()[1],  
+#             "search_string": math.group(),  
+#             "string": math.string,  
+#         }  
+#     else:  
+#         result = {  
+#             "result": False,  
+#             "first_index": None,  
+#             "last_index": None,  
+#             "search_string": word,  
+#             "string": text,  
+#         }  
+#     return result 
+
+''' Задача 11. Пошук слова 'python' '''
+
+# import re
+
+
+# def find_all_words(text, word):
+#     result_list = [] # список для запису знайдених результатів
+#     search_list = ['p', 'P', 'y', 'Y', 't', 'T', 'o', 'O', 'n', 'N']
+#     for word in text:
+#         for char in word:
+#             if char in search_list:
+#                 result_list += word
+#     return result_list
+
+# text = 'Python pYthon pythOn assas assaas asasasa'
+# word = r'python'
+# result_list = find_all_words(text, word)
+# print(result_list)
+
+''' Задача 11. Пошук слова 'python' (CHAT GPT) '''
+
+# import re
+
+# def find_python(text, word):
+#     pattern = re.compile(word, re.IGNORECASE)
+#     matches = pattern.findall(text)
+#     return matches
+
+# text = "Python is a very popular language. Lot of people use pYthon. I used python also!"
+# word_to_find = "python"
+# python_words = find_python(text, word_to_find)
+# print(python_words)
+
+''' Задача 12. Пошук спаму і заміна на зірочки '''
+
+# import re
+
+# def replace_spam_words(text, spam_words):
+#     new_str = text
+#     for el in spam_words:
+#         new_str = re.sub(el, "*" * len(el), new_str, flags=re.IGNORECASE)
+#     return new_str
+
+''' Задача 13. Пошук електронних адрес '''
+
+# import re
+
+# def find_all_emails(text):
+#     pattern = r'[A-Za-z][A-Za-z0-9._]+@[A-Za-z0-9_]+\.[A-Za-z]{2,}'
+#     result = re.findall(pattern, text)
+#     return result
+
+''' Задача 14. Пошук номера телефону '''
+
+# import re
+
+# def find_phone_numbers(text):
+#     pattern = re.compile(r'\+\d{3}\s?\(\d{2}\)\s?\d{3}-\d{1,2}-\d{2,3}')
+#     phone_numbers = pattern.findall(text)
+#     return phone_numbers
+
+# text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
+# phone_numbers = find_phone_numbers(text)
+# print(phone_numbers)
+
+import re
+def find_all_phones(text):
+    result = re.findall(r'\+\d{3}\s?\(\d{2}\)\s?\d{3}-\d{1,2}-\d{2,3}', text)
+    result = [number[:-1] if len(number) > 17 else number for number in result]
+    return result
     
+
+text = 'Irma +380(67)777-7-771 second +380(67)777-77-77 aloha a@test.com abc111@test.com.net +380(67)111-777-777+380(67)777-77-787'
+result = find_all_phones(text)
+print(result)
